@@ -9,7 +9,17 @@
 
 This bot is built with [discord.js](https://discord.js.org/).
 
-To get it set up:
+To get it set up, first [create a new bot user](https://discordjs.guide/preparations/setting-up-a-bot-application.html).
+
+Then, create a `.env` file with the following values from that bot user:
+
+```
+DISCORD_TOKEN=
+CLIENT_ID=
+GUILD_ID=
+```
+
+To run the bot locally:
 
 ```
 npm install

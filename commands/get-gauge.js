@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageActionRow, MessageEmbed, MessageSelectMenu } = require('discord.js');
 const Keyv = require('keyv')
 const KeyvFile = require('keyv-file').KeyvFile
 
@@ -23,7 +24,12 @@ module.exports = {
             const gaugeGoal = gauge.goal;
             const gaugeValue = gauge.value;
             console.log(`${gaugeName} status: ${gaugeValue} / ${gaugeGoal}`);
-            await interaction.editReply(`${gaugeName} status: ${gaugeValue} / ${gaugeGoal}`);
+            const embed = new MessageEmbed()
+			.setColor('#0099ff')
+			.setTitle(`${gaugeName} Progress`)
+			.setDescription(`${gaugeValue} / ${gaugeGoal}`);
+
+            await interaction.editReply({ embeds: [embed]});
         }
 	},
 };

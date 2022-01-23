@@ -21,8 +21,10 @@ module.exports = {
             console.log(`Couldn't find ${gaugeName}. Did you mean to /add it?`);
 		    await interaction.editReply(`Couldn't find ${gaugeName}. Did you mean to /add it?`);
         } else {
-            console.log(`Got gauge ${gaugeName}: ${gauge}`);
-            await interaction.editReply(`Got gauge ${gaugeName}: ${gauge}`);
+            const gaugeGoal = gauge.goal;
+            const gaugeValue = gauge.value;
+            console.log(`${gaugeName} status: ${gaugeValue} / ${gaugeGoal}`);
+            await interaction.editReply(`${gaugeName} status: ${gaugeValue} / ${gaugeGoal}`);
         }
 	},
 };

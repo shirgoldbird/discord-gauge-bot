@@ -28,9 +28,9 @@ module.exports = {
             const gaugeValue = valueToAdd //+ gauge.value;
             const gaugeObject = {'goal': gaugeGoal, 'value': gaugeValue};
             await keyv.set(gaugeName, gaugeObject);
-            const msgReply = await gaugeDisplayEmbed(gaugeObject, gaugeName);
+            const embed = await gaugeDisplayEmbed(gaugeObject, gaugeName);
             console.log(`${gaugeName} status: ${gaugeValue} / ${gaugeGoal}`);
-            await interaction.editReply(msgReply);
+            await interaction.editReply({ embeds: [embed], components: [] });
         }
 	},
 };

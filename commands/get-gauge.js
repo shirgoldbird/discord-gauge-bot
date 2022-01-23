@@ -30,8 +30,8 @@ module.exports = {
                 console.log(errorMsg);
                 await interaction.editReply({ content: errorMsg, components: [] });
             } else {
-                const msgReply = await gaugeDisplayEmbed(gauge, gaugeName);
-                await interaction.editReply(msgReply);
+                const embed = await gaugeDisplayEmbed(gauge, gaugeName);
+                await interaction.editReply({ embeds: [embed], components: [] });
             }
         }
 	},

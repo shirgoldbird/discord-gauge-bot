@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const Keyv = require('keyv')
 const KeyvFile = require('keyv-file').KeyvFile
+const { gaugeDisplayEmbed } = require('../helpers/display-gauge');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -30,9 +31,11 @@ module.exports = {
             } else {
                 allGauges = [gaugeName];
             }
+            let gaugeObject = {'goal': gaugeGoal, 'value': gaugeValue};
             await keyv.set('all', allGauges);
-            await keyv.set(gaugeName, {'goal': gaugeGoal, 'value': gaugeValue});
-		    await interaction.editReply(`Created new gauge ${gaugeName}`);
+            await keyv.set(gaugeName, gaugeObject);
+            const embed = await gaugeDisplayEmbed(gaugeObject, gaugeName);
+            await interaction.editReply({ content: `Created new gauge ${gaugeName}`, embeds: [embed], components: [] });
         } else {
             let errorMsg = `Gauge with name ${gaugeName} already exists!`;
             console.log(errorMsg)

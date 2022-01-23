@@ -20,6 +20,6 @@ module.exports = {
         .setTitle(`${gaugeName} ${gaugeStatus}`)
         .setDescription(gaugeDisplay);
 
-        return { embeds: [embed], components: [] };
+        return embed;
 	},
 };

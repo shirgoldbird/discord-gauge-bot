@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const Keyv = require('keyv')
 const KeyvFile = require('keyv-file').KeyvFile
+const { gaugeDisplayEmbed } = require('../helpers/display-gauge');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -25,9 +26,11 @@ module.exports = {
             const gaugeGoal = gauge.goal;
             // uncomment to have "add" behavior rather than "set"
             const gaugeValue = valueToAdd //+ gauge.value;
-            await keyv.set(gaugeName, {'goal': gaugeGoal, 'value': gaugeValue});
+            const gaugeObject = {'goal': gaugeGoal, 'value': gaugeValue};
+            await keyv.set(gaugeName, gaugeObject);
+            const msgReply = await gaugeDisplayEmbed(gaugeObject, gaugeName);
             console.log(`${gaugeName} status: ${gaugeValue} / ${gaugeGoal}`);
-            await interaction.editReply(`${gaugeName} status: ${gaugeValue} / ${gaugeGoal}`);
+            await interaction.editReply(msgReply);
         }
 	},
 };

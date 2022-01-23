@@ -23,6 +23,14 @@ module.exports = {
         });
         if (await keyv.get(gaugeName) == null) {
             console.log(`Creating new gauge ${gaugeName}`)
+            // get a list of all gauges, or create it if it doesn't exist
+            let allGauges = await keyv.get('all');
+            if (allGauges) {
+                allGauges.push(gaugeName);
+            } else {
+                allGauges = [gaugeName];
+            }
+            await keyv.set('all', allGauges);
             await keyv.set(gaugeName, {'goal': gaugeGoal, 'value': gaugeValue});
 		    await interaction.editReply(`Created new gauge ${gaugeName}`);
         } else {

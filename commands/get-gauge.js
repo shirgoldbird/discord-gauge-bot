@@ -27,7 +27,7 @@ module.exports = {
             // but just in case
             if (gauge == null) {
                 console.log(`Couldn't find ${gaugeName}. Did you mean to /add it?`);
-                await interaction.editReply({ content: `Couldn't find ${gaugeName}. Did you mean to /add it?`, components: [] });
+                await interaction.editReply({ content: `Couldn't find ${gaugeName}. Did you mean to /create it?`, components: [] });
             } else {
                 const gaugeGoal = gauge.goal;
                 const gaugeValue = gauge.value;

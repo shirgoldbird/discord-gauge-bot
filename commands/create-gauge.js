@@ -14,7 +14,7 @@ module.exports = {
         const gaugeName = interaction.options.getString('gauge-name');
         const gaugeGoal = interaction.options.getInteger('gauge-goal');
         const gaugeValue = interaction.options.getInteger('gauge-value') ? 
-            interaction.options.getString('gauge-value')
+            interaction.options.getInteger('gauge-value')
             : 0;
         const keyv = new Keyv({
             store: new KeyvFile({

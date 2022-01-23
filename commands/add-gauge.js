@@ -2,12 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const Keyv = require('keyv')
 const KeyvFile = require('keyv-file').KeyvFile
 
-const keyv = new Keyv({
-  store: new KeyvFile({
-    filename: `data/gauges.json`, // the file path to store the data
-  })
-})
-
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('add')
@@ -22,15 +16,18 @@ module.exports = {
         const gaugeValue = interaction.options.getNumber('gauge-value') ? 
             interaction.options.getString('gauge-value')
             : 0;
+        const keyv = new Keyv({
+            store: new KeyvFile({
+                filename: `data/gauges.json`, // the file path to store the data
+            })
+        });
         if (await keyv.get(gaugeName) == null) {
             console.log(`Creating new gauge ${gaugeName}`)
             await keyv.set(gaugeName, {'goal': gaugeGoal, 'value': gaugeValue});
-            // it'd be nice to write to file here but I can't figure out how
-            //await keyv.save();
 		    await interaction.editReply(`Added new gauge ${gaugeName}`);
         } else {
             console.log(`Gauge with name ${gaugeName} already exists!`)
-            await interaction.editReply(`Gauge with name ${gaugeName} already exists!`);
+            await interaction.editReply(`Gauge with name ${gaugeName} already exists! Did you mean /plus?`);
         }
 	},
 };

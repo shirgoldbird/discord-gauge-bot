@@ -2,12 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const Keyv = require('keyv')
 const KeyvFile = require('keyv-file').KeyvFile
 
-const keyv = new Keyv({
-  store: new KeyvFile({
-    filename: `data/gauges.json`, // the file path to store the data
-  })
-})
-
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('get')
@@ -16,6 +10,11 @@ module.exports = {
 	async execute(interaction) {
         await interaction.deferReply();
         const gaugeName = interaction.options.getString('gauge-name');
+        const keyv = new Keyv({
+            store: new KeyvFile({
+                filename: `data/gauges.json`, // the file path to store the data
+            })
+        });
         const gauge = await keyv.get(gaugeName);
         if (gauge == null) {
             console.log(`Couldn't find ${gaugeName}. Did you mean to /add it?`);

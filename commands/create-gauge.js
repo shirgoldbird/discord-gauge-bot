@@ -7,13 +7,13 @@ module.exports = {
 		.setName('create')
 		.setDescription('Create a new gauge')
         .addStringOption(option => option.setName('gauge-name').setDescription('Enter the gauge\'s name').setRequired(true))
-        .addNumberOption(option => option.setName('gauge-goal').setDescription('Enter the gauge\'s goal').setRequired(true))
-        .addNumberOption(option => option.setName('gauge-value').setDescription('Enter the gauge\'s starting value')),
+        .addIntegerOption(option => option.setName('gauge-goal').setDescription('Enter the gauge\'s goal').setRequired(true))
+        .addIntegerOption(option => option.setName('gauge-value').setDescription('Enter the gauge\'s starting value')),
 	async execute(interaction) {
         await interaction.deferReply();
         const gaugeName = interaction.options.getString('gauge-name');
-        const gaugeGoal = interaction.options.getNumber('gauge-goal');
-        const gaugeValue = interaction.options.getNumber('gauge-value') ? 
+        const gaugeGoal = interaction.options.getInteger('gauge-goal');
+        const gaugeValue = interaction.options.getInteger('gauge-value') ? 
             interaction.options.getString('gauge-value')
             : 0;
         const keyv = new Keyv({

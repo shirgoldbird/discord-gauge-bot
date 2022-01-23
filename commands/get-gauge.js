@@ -28,10 +28,10 @@ module.exports = {
             if (gauge == null) {
                 const errorMsg = `Couldn't find ${gaugeName}. Did you mean to /create it?`
                 console.log(errorMsg);
-                await interaction.editReply({ content: errorMsg, components: [] });
+                await interaction.editReply({ content: errorMsg, components: [], ephemeral: true });
             } else {
                 const embed = await gaugeDisplayEmbed(gauge, gaugeName);
-                await interaction.editReply({ embeds: [embed], components: [] });
+                await interaction.editReply({ content: null, embeds: [embed], components: [] });
             }
         }
 	},

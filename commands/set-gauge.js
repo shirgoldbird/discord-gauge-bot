@@ -4,8 +4,8 @@ const KeyvFile = require('keyv-file').KeyvFile
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('plus')
-		.setDescription('Increment a gauge')
+		.setName('set')
+		.setDescription('Set a new value for a gauge')
         .addStringOption(option => option.setName('gauge-name').setDescription('Enter the gauge\'s name').setRequired(true))
         .addIntegerOption(option => option.setName('gauge-value').setDescription('Enter the gauge\'s new value').setRequired(true)),
     async execute(interaction) {
@@ -23,7 +23,8 @@ module.exports = {
 		    await interaction.editReply(`Couldn't find ${gaugeName}. Did you mean to /add it?`);
         } else {
             const gaugeGoal = gauge.goal;
-            const gaugeValue = valueToAdd + gauge.value;
+            // uncomment to have "add" behavior rather than "set"
+            const gaugeValue = valueToAdd //+ gauge.value;
             await keyv.set(gaugeName, {'goal': gaugeGoal, 'value': gaugeValue});
             console.log(`${gaugeName} status: ${gaugeValue} / ${gaugeGoal}`);
             await interaction.editReply(`${gaugeName} status: ${gaugeValue} / ${gaugeGoal}`);

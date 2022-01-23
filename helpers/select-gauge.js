@@ -13,6 +13,7 @@ module.exports = {
         });
         // get all gauges
         let allGauges = await keyv.get('all');
+        console.log(`Got ${allGauges.length} gauges`)
         let allGaugeOptions = [];
         // turn them into options for select list
         allGauges.forEach((gauge) => {
@@ -23,14 +24,18 @@ module.exports = {
             allGaugeOptions.push(gaugeOption)
         });
 
-        const row = new MessageActionRow()
-            .addComponents(
-                new MessageSelectMenu()
-                    .setCustomId('select')
-                    .setPlaceholder('Nothing selected')
-                    .addOptions(allGaugeOptions),
-        );
+        if (allGaugeOptions.length == 0) {
+            await interaction.editReply({ content: 'No gauges available. Add one with /create.' });
+        } else {
+            const row = new MessageActionRow()
+                .addComponents(
+                    new MessageSelectMenu()
+                        .setCustomId('select')
+                        .setPlaceholder('Nothing selected')
+                        .addOptions(allGaugeOptions),
+            );
 
-		await interaction.editReply({ content: 'Select a gauge:', components: [row] });
-	},
+            await interaction.editReply({ content: 'Select a gauge:', components: [row] });
+        }
+    },
 };

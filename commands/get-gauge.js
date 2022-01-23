@@ -26,8 +26,9 @@ module.exports = {
             // this should never happen since values are provided by controlled select list
             // but just in case
             if (gauge == null) {
-                console.log(`Couldn't find ${gaugeName}. Did you mean to /add it?`);
-                await interaction.editReply({ content: `Couldn't find ${gaugeName}. Did you mean to /create it?`, components: [] });
+                const errorMsg = `Couldn't find ${gaugeName}. Did you mean to /create it?`
+                console.log(errorMsg);
+                await interaction.editReply({ content: errorMsg, components: [] });
             } else {
                 const gaugeGoal = gauge.goal;
                 const gaugeValue = gauge.value;

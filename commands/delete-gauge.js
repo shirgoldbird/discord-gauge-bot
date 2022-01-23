@@ -41,8 +41,9 @@ module.exports = {
 
                 await interaction.editReply({ content: `Deleted gauge ${gaugeName} (${gaugeValue} / ${gaugeGoal})`, components: [] });
             } else {
-                console.log(`No gauge named ${gaugeName} to delete!`)
-                await interaction.editReply({ content: `No gauge named ${gaugeName} to delete!`, components: [] });
+                let errorMsg = `No gauge named ${gaugeName} to delete!`;
+                console.log(errorMsg);
+                await interaction.editReply({ content: errorMsg, components: [] });
             }
         }
 	},

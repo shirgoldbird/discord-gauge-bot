@@ -34,8 +34,9 @@ module.exports = {
             await keyv.set(gaugeName, {'goal': gaugeGoal, 'value': gaugeValue});
 		    await interaction.editReply(`Created new gauge ${gaugeName}`);
         } else {
-            console.log(`Gauge with name ${gaugeName} already exists!`)
-            await interaction.editReply(`Gauge with name ${gaugeName} already exists!`);
+            let errorMsg = `Gauge with name ${gaugeName} already exists!`;
+            console.log(errorMsg)
+            await interaction.editReply(errorMsg);
         }
 	},
 };

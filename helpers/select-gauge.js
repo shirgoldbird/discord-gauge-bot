@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageActionRow, MessageEmbed, MessageSelectMenu } = require('discord.js');
+const { MessageActionRow, MessageSelectMenu } = require('discord.js');
 const Keyv = require('keyv')
 const KeyvFile = require('keyv-file').KeyvFile
 

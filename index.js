@@ -17,18 +17,26 @@ for (const file of commandFiles) {
 }
 
 client.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
+	if (!interaction.isCommand() && !interaction.isSelectMenu()) return;
 
-	const command = client.commands.get(interaction.commandName);
+    let commandName;
 
-	if (!command) return;
+    if (interaction.isCommand()) {
+        commandName = interaction.commandName;
+    } else if (interaction.isSelectMenu()) {
+        commandName = interaction.message.interaction.commandName;
+    }
 
-	try {
-		await command.execute(interaction);
-	} catch (error) {
-		console.error(error);
-		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-	}
+    const command = client.commands.get(commandName);
+
+    if (!command) return;
+
+    try {
+        await command.execute(interaction);
+    } catch (error) {
+        console.error(error);
+        await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+    }
 });
 
 // Login to Discord with your client's token

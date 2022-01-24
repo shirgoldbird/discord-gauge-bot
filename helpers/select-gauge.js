@@ -35,7 +35,7 @@ module.exports = {
                         .addOptions(allGaugeOptions),
             );
 
-            await interaction.editReply({ content: 'Select a gauge:', components: [row] });
+            await interaction.editReply({ content: 'Select a gauge:', components: [row], ephemeral: true });
         }
     },
 };

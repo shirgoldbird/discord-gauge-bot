@@ -21,6 +21,7 @@ Scopes:
 Bot Permissions:
 
 - `Use Slash Commands`
+- `Read Messages/View Channels`
 
 Copy and paste the resulting URL into your browser and add the bot to the server.
 

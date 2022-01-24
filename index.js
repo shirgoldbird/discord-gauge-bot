@@ -2,9 +2,16 @@ const fs = require('fs');
 const dotenv = require('dotenv');
 dotenv.config();
 const token = process.env.DISCORD_TOKEN;
-const { Client, Collection, Intents } = require('discord.js');
+const { Client, Collection } = require('discord.js');
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({
+    intents: [
+        'GUILDS',
+        'DIRECT_MESSAGES',
+        'GUILD_MESSAGES'
+    ],
+    partials: ['MESSAGE', 'CHANNEL'] // Needed to get messages from DM's as well
+});
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));

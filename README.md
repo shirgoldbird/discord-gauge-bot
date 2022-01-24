@@ -9,9 +9,22 @@
 
 This bot is built with [discord.js](https://discord.js.org/).
 
-To get it set up, first [create a new bot user](https://discordjs.guide/preparations/setting-up-a-bot-application.html).
+To get it set up, first [create a new bot user](https://discordjs.guide/preparations/setting-up-a-bot-application.html). Save the token for use later.
 
-Then, create a `.env` file with the following values from that bot user:
+Use the URL Generator with the following permissions.
+
+Scopes:
+
+- `bot`
+- `application.commands`
+
+Bot Permissions:
+
+- `Use Slash Commands`
+
+Copy and paste the resulting URL into your browser and add the bot to the server.
+
+Then, create a `.env` file with the following values from that bot user. (See `.env.example`.)
 
 ```
 DISCORD_TOKEN=

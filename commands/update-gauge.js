@@ -11,12 +11,12 @@ function isNumeric(value) {
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('set')
-		.setDescription('Set a new value for a gauge'),
+		.setName('update')
+		.setDescription('Update the value of a gauge'),
     async execute(interaction) {
         if (!gaugeRole || interaction.member.roles.cache.some(role => [gaugeAdminRole, gaugeRole].indexOf(role.name) != -1)) {
             if (interaction.isCommand()) {
-                console.log('Got get command, returning select menu')
+                console.log('Got update command, returning select menu')
                 // Get a select list of all gauges
                 await gaugeSelectList(interaction);
             } else if (interaction.isSelectMenu()) {
@@ -42,8 +42,8 @@ module.exports = {
                     });
                     const gauge = await keyv.get(gaugeName);
                     if (gauge == null) {
-                        console.log(`Couldn't find ${gaugeName}. Did you mean to /add it?`);
-                        await interaction.editReply(`Couldn't find ${gaugeName}. Did you mean to /add it?`);
+                        console.log(`Couldn't find ${gaugeName}. Did you mean to /create it?`);
+                        await interaction.editReply(`Couldn't find ${gaugeName}. Did you mean to /create it?`);
                     } else {
                         const gaugeGoal = gauge.goal;
                         // uncomment to have "add" behavior rather than "set"

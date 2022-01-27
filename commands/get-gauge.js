@@ -10,6 +10,7 @@ module.exports = {
 		.setDescription('Get a gauge\'s status'),
 	async execute(interaction) {
         if (interaction.isCommand()) {
+            console.log(interaction)
             console.log('Got get command, returning select menu')
             // Get a select list of all gauges
             await gaugeSelectList(interaction);
@@ -19,7 +20,7 @@ module.exports = {
             const gaugeName = interaction.values[0];
             const keyv = new Keyv({
                 store: new KeyvFile({
-                    filename: `data/${interaction.guild_id}_gauges.json`, // the file path to store the data
+                    filename: `data/${interaction.guildId}_gauges.json`, // the file path to store the data
                 })
             });
             const gauge = await keyv.get(gaugeName);

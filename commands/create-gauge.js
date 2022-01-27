@@ -21,7 +21,7 @@ module.exports = {
                 : 0;
             const keyv = new Keyv({
                 store: new KeyvFile({
-                    filename: `data/${interaction.guild_id}_gauges.json`, // the file path to store the data
+                    filename: `data/${interaction.guildId}_gauges.json`, // the file path to store the data
                 })
             });
             if (await keyv.get(gaugeName) == null) {

@@ -10,7 +10,6 @@ module.exports = {
 		.setDescription('Get a gauge\'s status'),
 	async execute(interaction) {
         if (interaction.isCommand()) {
-            console.log(interaction)
             console.log('Got get command, returning select menu')
             // Get a select list of all gauges
             await gaugeSelectList(interaction);

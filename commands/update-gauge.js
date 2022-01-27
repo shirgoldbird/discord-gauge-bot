@@ -37,7 +37,7 @@ module.exports = {
                     interaction.followUp({ content: `Setting ${gaugeName} to ${newValue}.`, ephemeral: true });
                     const keyv = new Keyv({
                         store: new KeyvFile({
-                            filename: `data/${interaction.guildId}_${interaction.guildId}_gauges.json`, // the file path to store the data
+                            filename: `data/${interaction.guildId}_gauges.json`, // the file path to store the data
                         })
                     });
                     const gauge = await keyv.get(gaugeName);

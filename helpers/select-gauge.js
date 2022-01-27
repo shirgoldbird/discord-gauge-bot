@@ -8,7 +8,7 @@ module.exports = {
 
         const keyv = new Keyv({
             store: new KeyvFile({
-                filename: `data/gauges.json`, // the file path to store the data
+                filename: `data/${interaction.guild_id}_gauges.json`, // the file path to store the data
             })
         });
         // get all gauges

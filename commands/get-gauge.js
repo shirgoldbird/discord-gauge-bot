@@ -19,7 +19,7 @@ module.exports = {
             const gaugeName = interaction.values[0];
             const keyv = new Keyv({
                 store: new KeyvFile({
-                    filename: `data/gauges.json`, // the file path to store the data
+                    filename: `data/${interaction.guild_id}_gauges.json`, // the file path to store the data
                 })
             });
             const gauge = await keyv.get(gaugeName);

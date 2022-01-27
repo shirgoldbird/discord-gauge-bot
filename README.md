@@ -33,16 +33,17 @@ CLIENT_ID=
 GUILD_ID=
 ```
 
-To run the bot locally:
+Then, run these commands:
 
 ```
 npm install
+node deploy-commands.js
 node index.js
 ```
 
-If you add a new command, run:
+After the first install, all you have to do is run `node index.js`. 
 
-`node deploy-commands.js`
+If you add a new command, run `node deploy-commands.js` again.
 
 Commands live in dedicated files in the `commands` folder.
 

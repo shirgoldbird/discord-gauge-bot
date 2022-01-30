@@ -7,10 +7,8 @@ const { Client, Collection } = require('discord.js');
 const client = new Client({
     intents: [
         'GUILDS',
-        'DIRECT_MESSAGES',
         'GUILD_MESSAGES'
-    ],
-    partials: ['MESSAGE', 'CHANNEL'] // Needed to get messages from DM's as well
+    ]
 });
 
 client.commands = new Collection();
@@ -24,7 +22,7 @@ for (const file of commandFiles) {
 }
 
 client.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand() && !interaction.isSelectMenu()) return;
+    if (!interaction.isCommand() && !interaction.isSelectMenu()) return;
 
     let commandName;
 

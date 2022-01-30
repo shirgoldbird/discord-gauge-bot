@@ -30,7 +30,6 @@ Then, create a `.env` file with the following values from that bot user. (See `.
 ```
 DISCORD_TOKEN=
 CLIENT_ID=
-GUILD_ID=
 ```
 
 Then, run these commands:
